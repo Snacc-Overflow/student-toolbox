@@ -1,7 +1,9 @@
+import Title from "@/components/title"
+
 export default function CalculatorPage() {
   return (
     <main>
-      <h1>Calculator</h1>
+      <Title text="Calculator" />
     </main>
   )
 }

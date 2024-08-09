@@ -1,7 +1,9 @@
+import Title from "@/components/title"
+
 export default function TodoPage() {
   return (
     <main>
-      <h1>To-do list</h1>
+      <Title text="To-do list" />
     </main>
   )
 }

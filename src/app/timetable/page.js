@@ -1,7 +1,9 @@
+import Title from "@/components/title"
+
 export default function TimetablePage() {
   return (
     <main>
-      <h1>Timetable</h1>
+      <Title text="Timetable" />
     </main>
   )
 }

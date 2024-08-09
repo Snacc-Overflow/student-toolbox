@@ -1,9 +1,10 @@
+import Title from "@/components/title"
 import Link from "next/link"
 
 export default function Home() {
   return (
     <main>
-      <h1>Dashboard</h1>
+      <Title text="👋 Welcome, student!" />
       <ul>
         <li>
           <Link href="/calculator">Grade calculator</Link>
