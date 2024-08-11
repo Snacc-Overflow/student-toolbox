@@ -7,8 +7,6 @@ export default async function LayoutAvatar() {
 
   if (!session) return null
 
-  console.log(session)
-
   return (
     <div className={styles["layout-avatar"]}>
       <Avatar size={48} username={session.user.name} />
