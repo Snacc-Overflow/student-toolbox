@@ -1,3 +1,4 @@
+import Title from "@/components/title"
 import { createUserModel } from "@/lib/mongodb/mongodb"
 
 export default async function RegisterPage() {
@@ -14,16 +15,19 @@ export default async function RegisterPage() {
   }
 
   return (
-    <form action={registerUser}>
-      <label>
-        Username
-        <input name="username" type="text" required />
-      </label>
-      <label>
-        Password
-        <input name="password" type="password" required />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <main>
+      <Title text="Register" />
+      <form action={registerUser}>
+        <label>
+          Username
+          <input name="username" type="text" required />
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" required />
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </main>
   )
 }
