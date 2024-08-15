@@ -12,6 +12,19 @@ export default function Assignment(props) {
         setEditor(field);
     };
 
+    const handleChangingElement = (field) => {
+        let potentialField = field === "grade" ? grade : weight;
+        return editor === field ? (
+            <input
+                defaultValue={field === "name" ? name : potentialField}
+                onBlur={(e) => handleBlur(field, e.target.value)}
+                autoFocus
+            />
+        ) : (
+            <p>{field === "name" ? name : potentialField}</p>
+        )
+    }
+
     const handleBlur = (field, value) => {
         if (field === "name") {
             setName(value);
@@ -36,15 +49,7 @@ export default function Assignment(props) {
             <div className="assignmentName">
                 Name:{""}
                 <button onClick={() => handleClick("name")}>
-                    {editor === "name" ? (
-                        <input
-                            defaultValue={name}
-                            onBlur={(e) => handleBlur("name", e.target.value)}
-                            autoFocus
-                        />
-                    ) : (
-                        <p>{name}</p>
-                    )}
+                    {handleChangingElement("name")}
                 </button>
             </div>
         </div>
@@ -52,29 +57,13 @@ export default function Assignment(props) {
             <div>
                 Grade %:{""}
                 <button className="finalGrade" onClick={() => handleClick("grade")} id="finalGrade">
-                    {editor === "grade" ? (
-                        <input
-                            defaultValue={grade}
-                            onBlur={(e) => handleBlur("grade", e.target.value)}
-                            autoFocus
-                        />
-                    ) : (
-                        <p>{grade}</p>
-                    )}
+                    {handleChangingElement("grade")}
                 </button>
             </div>
             <div>
                 Weight %:{""}
                 <button className="weighting" onClick={() => handleClick("weight")} id="weighting">
-                    {editor === "weight" ? (
-                        <input
-                            defaultValue={weight}
-                            onBlur={(e) => handleBlur("weight", e.target.value)}
-                            autoFocus
-                        />
-                    ) : (
-                        <p>{weight}</p>
-                    )}
+                    {handleChangingElement("weight")}
                 </button>
             </div>
             <button className="deleteAssignmentBtn" onClick={() => props.onDelete(props.id)}>x</button>
