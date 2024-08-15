@@ -19,12 +19,10 @@ export default async function RegisterPage() {
       <Title text="Register" />
       <form action={registerUser}>
         <label>
-          Username
-          <input name="username" type="text" required />
+          Username <input name="username" type="text" required />
         </label>
         <label>
-          Password
-          <input name="password" type="password" required />
+          Password <input name="password" type="password" required />
         </label>
         <button type="submit">Register</button>
       </form>

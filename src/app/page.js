@@ -1,5 +1,4 @@
 import { auth } from "@/auth"
-import Avatar from "@/components/auth/avatar"
 import Title from "@/components/title"
 
 export default async function Home() {

@@ -20,7 +20,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         const User = await createUserModel()
         const user = await User.findOne({ username: credentials.username })
-        if (user && user.comparePassword(credentials.password)) {
+        if (user?.comparePassword(credentials.password)) {
           return { id: user.id, name: user.username }
         } else {
           return null
