@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 import EventModal from "./eventModal";
 import DeleteModal from "./deleteModal"; // New component for delete confirmation
 
-export default function calendar() {
+export default function Calendar() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const [events, setEvents] = useState([]);

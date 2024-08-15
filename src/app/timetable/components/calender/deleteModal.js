@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./style.module.scss";
 
-export default function deleteModal({
+export default function DeleteModal({
   isOpen,
   setIsOpen,
   handleDelete,
@@ -23,7 +23,7 @@ export default function deleteModal({
 }
 
 // Define PropTypes for DeleteModal
-deleteModal.propTypes = {
+DeleteModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
@@ -31,6 +31,6 @@ deleteModal.propTypes = {
 };
 
 // Define default props if necessary
-deleteModal.defaultProps = {
+DeleteModal.defaultProps = {
   eventTitle: "the event",
 };

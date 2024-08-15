@@ -61,7 +61,6 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
 
 // Define PropTypes for EventModal
 EventModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
   selectedInfo: PropTypes.object,
   setEvents: PropTypes.func.isRequired,
