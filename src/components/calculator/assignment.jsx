@@ -1,9 +1,8 @@
-import React from 'react'
-import { useState } from "react";
+import React, {useState} from 'react';
 import "./css/assignment.css";
 
-export default function assignment(props) {
-    const [name, setName] = useState(props.name || "");
+export default function Assignment(props) {
+    const [name, setName] = useState(props.assignmentName || "");
     const [grade, setGrade] = useState(props.grade || "");
     const [weight, setWeight] = useState(props.weight || "");
     const [editor, setEditor] = useState(null);
@@ -35,7 +34,7 @@ export default function assignment(props) {
         <div>
             <div className="assignmentName">
                 Name:
-                <div onClick={() => handleClick("name")}>
+                <button onClick={() => handleClick("name")}>
                     {editor === "name" ? (
                         <input
                             defaultValue={name}
@@ -45,13 +44,13 @@ export default function assignment(props) {
                     ) : (
                         <p>{name}</p>
                     )}
-                </div>
+                </button>
             </div>
         </div>
         <div className="assignmentResults">
             <div>
                 Grade %:
-                <div onClick={() => handleClick("grade")} className="finalGrade">
+                <button onClick={() => handleClick("grade")} className="finalGrade">
                     {editor === "grade" ? (
                         <input
                             defaultValue={grade}
@@ -61,11 +60,11 @@ export default function assignment(props) {
                     ) : (
                         <p>{grade}</p>
                     )}
-                </div>
+                </button>
             </div>
             <div>
                 Weight %:
-                <div onClick={() => handleClick("weight")} className="weighting">
+                <button onClick={() => handleClick("weight")} className="weighting">
                     {editor === "weight" ? (
                         <input
                             defaultValue={weight}
@@ -75,10 +74,17 @@ export default function assignment(props) {
                     ) : (
                         <p>{weight}</p>
                     )}
-                </div>
+                </button>
             </div>
             <button className="deleteAssignmentBtn" onClick={() => props.onDelete(props.id)}>x</button>
         </div>
     </div>  
   )
 }
+
+Assignment.propTypes = {
+    assignmentName: PropTypes.string.isRequired,
+    grade: PropTypes.string.isRequired,
+    weight: PropTypes.string.isRequired,
+    onDelete: PropTypes.func.isRequired,
+  };

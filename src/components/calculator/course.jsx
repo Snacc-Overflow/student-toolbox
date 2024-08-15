@@ -2,7 +2,7 @@ import "./css/course.css";
 import { useState } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import CourseHeader from "./courseHeader";
-import CourseAssignments from "./courseAssignments";
+import CourseAssignments from "./CourseAssignments";
 
 export default function Course(props) {
   const [showAssignments, setShowAssignments] = useState(false);

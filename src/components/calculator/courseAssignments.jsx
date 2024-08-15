@@ -1,13 +1,15 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from 'react';
 import "./css/courseAssignments.css";
-import Assignment from "./assignment";
+import Assignment from "./Assignment";
 
-export default function courseAssignments() {
+export default function CourseAssignments() {
+    const crypto = window.crypto || window.msCrypto;
+    let array = new Uint32Array(1);
+
     const [assignments, setAssignments] = useState([]);
 
     const handleNewAssignment = () => {
-        setAssignments([...assignments, { id: Math.random() }]);
+        setAssignments([...assignments, { id: crypto.getRandomValues(array) }]);
     };
 
     const handleAssignmentDelete = (id) => {
