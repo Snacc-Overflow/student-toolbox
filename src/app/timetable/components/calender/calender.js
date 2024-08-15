@@ -11,6 +11,8 @@ export default function Calendar() {
   // State to manage the visibility of the modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
   // State to store the selected date/time information when creating a new event
   const [selectedInfo, setSelectedInfo] = useState(null);
 
@@ -19,6 +21,8 @@ export default function Calendar() {
 
   // State to store the color selected by the user, with a default value
   const [color, setColor] = useState("#3788d8");
+
+  const [eventToDelete, setEventToDelete] = useState(null); // Track the event to be deleted
 
   // This function is triggered when a date/time range is selected in the calendar
   function handleDateSelect(selectInfo) {
@@ -51,12 +55,15 @@ export default function Calendar() {
 
   // This function is called when an event is clicked in the calendar
   function handleEventClick(clickInfo) {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`
-      )
-    ) {
-      clickInfo.event.remove(); // Remove the event if the user confirms
+    setEventToDelete(clickInfo.event); // Store the event to be deleted
+    setDeleteModalIsOpen(true); // Open the deletion confirmation modal
+  }
+
+  function handleEventDelete() {
+    if (eventToDelete) {
+      eventToDelete.remove(); // Remove the event if confirmed
+      setDeleteModalIsOpen(false); // Close the deletion modal
+      setEventToDelete(null); // Clear the event to delete state
     }
   }
 
@@ -107,6 +114,21 @@ export default function Calendar() {
             <button onClick={handleEventCreation}>Create Event</button>
             {/* Button to cancel and close the modal */}
             <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
+      {/* Deletion Modal */}
+      {deleteModalIsOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h2>Delete Event</h2>
+            <p>
+              Are you sure you want to delete the event '{eventToDelete?.title}
+              '?
+            </p>
+            <button onClick={handleEventDelete}>Yes, Delete</button>
+            <button onClick={() => setDeleteModalIsOpen(false)}>Cancel</button>
           </div>
         </div>
       )}
