@@ -1,136 +1,77 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { createEventId } from "./event-utils"; // Utility function to create unique event IDs
-import styles from "./style.module.scss"; // Importing custom styles
+import styles from "./style.module.scss";
+import EventModal from "./eventModal";
+import DeleteModal from "./deleteModal"; // New component for delete confirmation
 
-export default function Calendar() {
-  // State to manage the visibility of the modal
+export default function calendar() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-
-  // State to store the selected date/time information when creating a new event
+  const [events, setEvents] = useState([]);
   const [selectedInfo, setSelectedInfo] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null); // For delete confirmation
 
-  // State to store the event title input by the user
-  const [title, setTitle] = useState("");
+  // Fetch events from API
+  useEffect(() => {
+    // Replace with your API call to fetch events
+    // setEvents();
+  }, []);
 
-  // State to store the color selected by the user, with a default value
-  const [color, setColor] = useState("#3788d8");
+  const handleDateSelect = (selectInfo) => {
+    setSelectedInfo(selectInfo);
+    setModalIsOpen(true);
+  };
 
-  const [eventToDelete, setEventToDelete] = useState(null); // Track the event to be deleted
+  const handleEventClick = (clickInfo) => {
+    setSelectedEvent(clickInfo.event);
+    setDeleteModalIsOpen(true);
+  };
 
-  // This function is triggered when a date/time range is selected in the calendar
-  function handleDateSelect(selectInfo) {
-    setSelectedInfo(selectInfo); // Save the selected date/time info
-    setModalIsOpen(true); // Open the modal for the user to enter event details
-  }
-
-  // This function is called when the user confirms the creation of a new event
-  function handleEventCreation() {
-    if (title && selectedInfo) {
-      // Ensure that the title and date info are provided
-      let calendarApi = selectedInfo.view.calendar; // Access the calendar API
-
-      // Add the new event to the calendar with the provided title and color
-      calendarApi.addEvent({
-        id: createEventId(), // Generate a unique ID for the event
-        title,
-        start: selectedInfo.startStr, // Start time of the event
-        end: selectedInfo.endStr, // End time of the event
-        allDay: selectedInfo.allDay, // Whether the event is an all-day event
-        backgroundColor: color, // Background color for the event
-        borderColor: color, // Border color for the event
-      });
-
-      setModalIsOpen(false); // Close the modal
-      setTitle(""); // Reset the title input
-      setColor("#3788d8"); // Reset the color to the default value
+  const handleEventDeletion = () => {
+    if (selectedEvent) {
+      // Remove event from local state
+      setEvents((prevEvents) =>
+        prevEvents.filter((event) => event.id !== selectedEvent.id)
+      );
+      // Close delete modal
+      setDeleteModalIsOpen(false);
+      setSelectedEvent(null);
     }
-  }
-
-  // This function is called when an event is clicked in the calendar
-  function handleEventClick(clickInfo) {
-    setEventToDelete(clickInfo.event); // Store the event to be deleted
-    setDeleteModalIsOpen(true); // Open the deletion confirmation modal
-  }
-
-  function handleEventDelete() {
-    if (eventToDelete) {
-      eventToDelete.remove(); // Remove the event if confirmed
-      setDeleteModalIsOpen(false); // Close the deletion modal
-      setEventToDelete(null); // Clear the event to delete state
-    }
-  }
-
-  // This function defines how the event content is rendered on the calendar
-  function renderEventContent(eventInfo) {
-    return (
-      <>
-        <b>{eventInfo.timeText}</b> {/* Display the event time */}
-        <i>{eventInfo.event.title}</i> {/* Display the event title */}
-      </>
-    );
-  }
+  };
 
   return (
     <div className={styles.calendar_main}>
-      {/* FullCalendar component with various props */}
       <FullCalendar
-        plugins={[timeGridPlugin, interactionPlugin]} // Plugins for time grid view and interaction
-        initialView="timeGridWeek" // Default view is weekly time grid
-        editable={true} // Events can be edited (dragged, resized, etc.)
-        selectable={true} // Dates can be selected to create new events
-        height={650} // Height of the calendar
-        select={handleDateSelect} // Handle date selection
-        eventContent={renderEventContent} // Custom rendering of event content
-        eventClick={handleEventClick} // Handle event click
+        plugins={[timeGridPlugin, interactionPlugin]}
+        initialView="timeGridWeek"
+        editable={true}
+        selectable={true}
+        height={650}
+        events={events}
+        select={handleDateSelect}
+        eventClick={handleEventClick}
       />
 
-      {/* Modal for creating a new event, displayed only when modalIsOpen is true */}
       {modalIsOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <h2>Create New Event</h2>
-            {/* Input for event title */}
-            <input
-              type="text"
-              placeholder="Enter event title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            {/* Input for event color */}
-            <h3>Pick a colour</h3>
-            <input
-              type="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-            {/* Button to create the event */}
-            <button onClick={handleEventCreation}>Create Event</button>
-            {/* Button to cancel and close the modal */}
-            <button onClick={() => setModalIsOpen(false)}>Cancel</button>
-          </div>
-        </div>
+        <EventModal
+          isOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          selectedInfo={selectedInfo}
+          setEvents={setEvents}
+        />
       )}
 
-      {/* Deletion Modal */}
       {deleteModalIsOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <h2>Delete Event</h2>
-            <p>
-              Are you sure you want to delete the event '{eventToDelete?.title}
-              '?
-            </p>
-            <button onClick={handleEventDelete}>Yes, Delete</button>
-            <button onClick={() => setDeleteModalIsOpen(false)}>Cancel</button>
-          </div>
-        </div>
+        <DeleteModal
+          isOpen={deleteModalIsOpen}
+          setIsOpen={setDeleteModalIsOpen}
+          handleDelete={handleEventDeletion}
+          eventTitle={selectedEvent?.title}
+        />
       )}
     </div>
   );
