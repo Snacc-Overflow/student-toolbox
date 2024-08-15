@@ -9,7 +9,7 @@ import Assignment from "./assignment";
  * a list of assignments, and calculated totals such as total achieved percentage, average achieved 
  * percentage, and the course grade.
  * 
- * The component manages its own state, including whether the assignments are visible, and tracks 
+ * The component manages tracks 
  * its assignments, total percent achieved, average percentage achieved, and course grade. 
  * Assignments can be added, deleted, and updated, with corresponding state updates for totals and averages.
  * 
@@ -94,6 +94,10 @@ export default function Course(props) {
     setAverageAcheived(averagePercent);
   };
 
+  /**
+   * Calculates the course grade based on the average achieved percentage
+   * and updates the grade. Also updates the GPA in ../page.js. 
+   */
   useEffect(() => {
     const determineGrade = (average) => {
       if (average >= 90) return { letter: "A+", gpa: 9 };
@@ -114,6 +118,7 @@ export default function Course(props) {
     const grade = determineGrade(averageAcheived);
 
     setCourseGrade(grade.letter);
+    // Call the function in /calculator/page.js to add gpa to the course
     props.onAverageUpdate(props.id, grade.gpa);
   }, [averageAcheived]);
 

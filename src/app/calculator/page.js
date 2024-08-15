@@ -27,27 +27,28 @@ export default function CalculatorPage() {
     setCourses(courses.filter((course) => course.id !== id));
   };
 
-  const handleAverageUpdate = (id, newAverage) => {
+  const handleAverageUpdate = (id, gradePoint) => {
     const updatedCourses = courses.map((course) =>
-      course.id === id ? { ...course, averageAchieved: newAverage } : course
+      course.id === id ? { ...course, gradePoint: gradePoint } : course
     );
     setCourses(updatedCourses);
   };
 
   useEffect(() => {
     let newGpa = 0;
+    // Since this hook called whenever the courses array changes, some courses in the array may not have a
+    // gradePoint. Count tracks the number of courses that do.
     let count = 0;
 
     for (let course in courses) {
-      if (!isNaN(courses[course].averageAchieved)) {
-        newGpa += courses[course].averageAchieved;
+      if (!isNaN(courses[course].gradePoint)) {
+        newGpa += courses[course].gradePoint;
         count++;
       }
     }
-
+    
     if (count > 0) {
       setGpa((newGpa / count).toFixed(2));
-      console.log(`gpa is ${newGpa}`);
     } else {
       setGpa("X");
     }
