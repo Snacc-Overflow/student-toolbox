@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import "./css/assignment.css";
+import PropTypes from "prop-types";
 
 export default function Assignment(props) {
     const [name, setName] = useState(props.assignmentName || "");
@@ -33,7 +34,7 @@ export default function Assignment(props) {
     <div className="assignment">
         <div>
             <div className="assignmentName">
-                Name:
+                Name:{""}
                 <button onClick={() => handleClick("name")}>
                     {editor === "name" ? (
                         <input
@@ -49,8 +50,8 @@ export default function Assignment(props) {
         </div>
         <div className="assignmentResults">
             <div>
-                Grade %:
-                <button onClick={() => handleClick("grade")} className="finalGrade">
+                Grade %:{""}
+                <button className="finalGrade" onClick={() => handleClick("grade")} id="finalGrade">
                     {editor === "grade" ? (
                         <input
                             defaultValue={grade}
@@ -63,8 +64,8 @@ export default function Assignment(props) {
                 </button>
             </div>
             <div>
-                Weight %:
-                <button onClick={() => handleClick("weight")} className="weighting">
+                Weight %:{""}
+                <button className="weighting" onClick={() => handleClick("weight")} id="weighting">
                     {editor === "weight" ? (
                         <input
                             defaultValue={weight}
@@ -84,6 +85,7 @@ export default function Assignment(props) {
 
 Assignment.propTypes = {
     assignmentName: PropTypes.string.isRequired,
+    id: PropTypes.isRequired,
     grade: PropTypes.string.isRequired,
     weight: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,

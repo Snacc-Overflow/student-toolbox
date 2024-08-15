@@ -32,19 +32,21 @@
     border-radius: 5px;
 }
 
-.assignmentName > div {
+.assignmentName > button {
     cursor: text;
     display: flex;
     align-items: center;
-    height: 70%;
+    height: 80%;
     width: 100%;
     padding: 3px;
     background-color: rgb(103, 103, 103, 0.33);
     border-radius: 5px;
+    border: none;
 }
 
-.assignmentName > div > * {
+.assignmentName > button > * {
     width: 100%;
+    font-size: 18px;
     background-color: transparent;
     outline: none;
     border: none;
@@ -61,32 +63,34 @@
     border-radius: 5px;
 }
 
-.assignmentResults > div > * {
+.assignmentResults > div > button {
     cursor: text;
     display: flex;
     align-items: center;
-    height: 70%;
+    height: 80%;
     padding: 3px;
     background-color: rgb(103, 103, 103, 0.33);
     border-radius: 5px;
+    border: none;
 }
 
-.weighting {
-    width: 43%;
+#finalGrade {
+    width: 50%;
 }
 
-.finalGrade {
-    width: 48%;
+#weighting {
+    width: 45%;
 }
 
-.assignmentResults > div > * > * {
+.assignmentResults > div > button > * {
     width: 100%;
+    font-size: 18px;
     background-color: transparent;
     outline: none;
     border: none;
 }
 
-.assignmentResults button{
+.assignmentResults > button{
 
     background: none;       
     border: none;           
