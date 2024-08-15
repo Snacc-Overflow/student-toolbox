@@ -50,10 +50,10 @@ export default function calendar() {
         initialView="timeGridWeek"
         editable={true}
         selectable={true}
-        height={650}
         events={events}
         select={handleDateSelect}
         eventClick={handleEventClick}
+        slotLaneClassNames="custom-slot-class"
       />
 
       {modalIsOpen && (

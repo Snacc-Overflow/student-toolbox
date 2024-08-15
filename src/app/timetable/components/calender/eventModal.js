@@ -3,12 +3,7 @@ import PropTypes from "prop-types"; // Import PropTypes
 import styles from "./style.module.scss";
 import { createEventId } from "./event-utils";
 
-export default function EventModal({
-  isOpen,
-  setIsOpen,
-  selectedInfo,
-  setEvents,
-}) {
+export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
   const [title, setTitle] = useState("");
   const [color, setColor] = useState("#3788d8");
 
@@ -51,7 +46,7 @@ export default function EventModal({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <h3>Pick a color</h3>
+        <h2>Pick a color</h2>
         <input
           type="color"
           value={color}
