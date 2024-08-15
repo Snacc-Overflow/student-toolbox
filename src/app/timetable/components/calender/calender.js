@@ -3,7 +3,7 @@
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS, createEventId } from "./event-utils";
+import { EVENTS, createEventId } from "./event-utils";
 
 export default function Calendar() {
   return (
@@ -12,7 +12,7 @@ export default function Calendar() {
       initialView="timeGridWeek"
       editable={true}
       selectable={true}
-      initialEvents={INITIAL_EVENTS}
+      initialEvents={EVENTS}
       height={650}
       select={handleDateSelect}
       eventContent={renderEventContent}
