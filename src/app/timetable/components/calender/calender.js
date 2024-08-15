@@ -4,23 +4,27 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { createEventId } from "./event-utils";
+import styles from "./style.module.scss";
 
 export default function Calendar() {
   return (
-    <FullCalendar
-      plugins={[timeGridPlugin, interactionPlugin]}
-      initialView="timeGridWeek"
-      editable={true}
-      selectable={true}
-      height={650}
-      select={handleDateSelect}
-      eventContent={renderEventContent}
-      eventClick={handleEventClick}
-    />
+    <div className={styles.calender_main}>
+      <FullCalendar
+        plugins={[timeGridPlugin, interactionPlugin]}
+        initialView="timeGridWeek"
+        editable={true}
+        selectable={true}
+        height={650}
+        select={handleDateSelect}
+        eventContent={renderEventContent}
+        eventClick={handleEventClick}
+      />
+    </div>
   );
 
   function handleDateSelect(selectInfo) {
     let title = prompt("Please enter a new title for your event");
+    let color = prompt("Please enter a color for your event (e.g., #ff0000)");
     let calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
@@ -32,6 +36,8 @@ export default function Calendar() {
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay,
+        backgroundColor: color || "#3788d8", // Default color if none is provided
+        borderColor: color || "#3788d8", // Match border color to the background color
       });
     }
   }
