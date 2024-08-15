@@ -58,7 +58,11 @@ export default function Calendar() {
         events={events} // Passing the list of events to the calendar.
         select={handleDateSelect} // Event handler for date selection.
         eventClick={handleEventClick} // Event handler for event clicks.
-        slotLaneClassNames="custom-slot-class" // Adding a custom class for further styling.
+        slotLabelFormat={{
+          hour: "numeric",
+          minute: "2-digit",
+          omitZeroMinute: false,
+        }} // Format for time slot labels.
       />
 
       {/* Render the event creation modal if it is open */}

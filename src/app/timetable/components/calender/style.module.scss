@@ -1,4 +1,4 @@
-/* style.module.scss */
+/* Main calendar container with padding and positioning */
 .calendar_main {
   padding-left: 25%;
   padding-right: 25%;
@@ -6,6 +6,7 @@
   z-index: 1;
 }
 
+/* Overlay for modal, covering the entire screen with a semi-transparent background */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -19,6 +20,7 @@
   z-index: 1000; /* Ensure it's on top of other elements */
 }
 
+/* Content box for the modal, centered on the screen */
 .modalContent {
   background-color: #9bc4bc;
   padding: 2em;
@@ -29,11 +31,13 @@
   text-align: center;
 }
 
+/* Header style within the modal content */
 .modalContent h2 {
   margin-bottom: 1em;
   font-size: 1.5em;
 }
 
+/* Style for the text input within the modal */
 .modalContent input[type="text"] {
   width: 100%;
   padding: 0.5em;
@@ -43,6 +47,7 @@
   font-size: 1em;
 }
 
+/* Style for the color picker input within the modal */
 .modalContent input[type="color"] {
   width: 518px;
   height: 100px;
@@ -53,6 +58,7 @@
   cursor: pointer;
 }
 
+/* General button styles within the modal */
 .modalContent button {
   padding: 0.75em 1.5em;
   margin: 0.5em;
@@ -65,15 +71,18 @@
   transition: background-color 0.3s ease;
 }
 
+/* Hover state for the primary button */
 .modalContent button:hover {
   background-color: #2b6ba8;
 }
 
+/* Style for the cancel button within the modal */
 .modalContent button:last-child {
   background-color: #ccc;
   color: #333;
 }
 
+/* Hover state for the cancel button */
 .modalContent button:last-child:hover {
   background-color: #999;
 }
