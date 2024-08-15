@@ -1,5 +1,5 @@
 import "./css/course.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import CourseHeader from "./courseHeader";
 import Assignment from "./assignment";
@@ -94,6 +94,29 @@ export default function Course(props) {
     setAverageAcheived(averagePercent);
   };
 
+  useEffect(() => {
+    const determineGrade = (average) => {
+      if (average >= 90) return { letter: "A+", gpa: 9 };
+      if (average >= 85) return { letter: "A", gpa: 8 };
+      if (average >= 80) return { letter: "A-", gpa: 7 };
+      if (average >= 75) return { letter: "B+", gpa: 6 };
+      if (average >= 70) return { letter: "B", gpa: 5 };
+      if (average >= 65) return { letter: "B-", gpa: 4 };
+      if (average >= 60) return { letter: "C+", gpa: 3 };
+      if (average >= 55) return { letter: "C", gpa: 2 };
+      if (average >= 50) return { letter: "C-", gpa: 1 };
+      if (average >= 45) return { letter: "D+", gpa: 0 };
+      if (average >= 40) return { letter: "D", gpa: 0 };
+      if (average >= 30) return { letter: "D-", gpa: 0 };
+      return { letter: "F", gpa: 0 };
+    };
+
+    const grade = determineGrade(averageAcheived);
+
+    setCourseGrade(grade.letter);
+    props.onAverageUpdate(props.id, grade.gpa);
+  }, [averageAcheived]);
+
   return (
     <div className="course">
       <CourseHeader
@@ -131,4 +154,5 @@ Course.propTypes = {
   courseName: PropTypes.string.isRequired,
   courseDelete: PropTypes.func.isRequired,
   id: PropTypes.isRequired,
+  onAverageUpdate: PropTypes.func.isRequired
 };
