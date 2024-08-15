@@ -50,7 +50,7 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <h2>Pick a color</h2>
+        <h2>Pick a colour</h2>
         {/* Color picker for selecting the event color */}
         <input
           type="color"
