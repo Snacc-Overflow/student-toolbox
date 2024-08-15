@@ -1,11 +1,11 @@
 import Title from "@/components/title";
-import Calender from "./components/calender";
+import Calender from "./components/calender/calender";
 
 export default function TimetablePage() {
   return (
     <main>
-      <Calender />
       <Title text="Timetable" />
+      <Calender />
     </main>
   );
 }
