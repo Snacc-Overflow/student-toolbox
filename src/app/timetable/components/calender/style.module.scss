@@ -1,3 +1,79 @@
-.calender_main {
+/* style.module.scss */
+.calendar_main {
   padding: 5em;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.modalContent h2 {
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.modalContent input[type="text"] {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.modalContent input[type="color"] {
+  width: 518px;
+  height: 100px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modalContent button {
+  padding: 0.75em 1.5em;
+  margin: 0.5em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  background-color: #3788d8;
+  transition: background-color 0.3s ease;
+}
+
+.modalContent button:hover {
+  background-color: #2b6ba8;
+}
+
+.modalContent button:last-child {
+  background-color: #ccc;
+  color: #333;
+}
+
+.modalContent button:last-child:hover {
+  background-color: #999;
 }

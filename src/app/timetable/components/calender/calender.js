@@ -92,11 +92,12 @@ export default function Calendar() {
             {/* Input for event title */}
             <input
               type="text"
-              placeholder="Event Title"
+              placeholder="Enter event title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             {/* Input for event color */}
+            <h3>Pick a colour</h3>
             <input
               type="color"
               value={color}
