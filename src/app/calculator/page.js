@@ -27,6 +27,13 @@ export default function CalculatorPage() {
     setCourses(courses.filter((course) => course.id !== id));
   };
 
+  /**
+   * Updates a course in 'courses' gradepoint field. Is finally called in the
+   * useEffect hook of course.jsx.
+   * 
+   * @param {*} id 
+   * @param {*} gradePoint 
+   */
   const handleAverageUpdate = (id, gradePoint) => {
     const updatedCourses = courses.map((course) =>
       course.id === id ? { ...course, gradePoint: gradePoint } : course
@@ -36,7 +43,7 @@ export default function CalculatorPage() {
 
   useEffect(() => {
     let newGpa = 0;
-    // Since this hook called whenever the courses array changes, some courses in the array may not have a
+    // Since this hook is called whenever the 'courses' array changes, some courses in the array may not have a
     // gradePoint. Count tracks the number of courses that do.
     let count = 0;
 
@@ -46,7 +53,7 @@ export default function CalculatorPage() {
         count++;
       }
     }
-    
+
     if (count > 0) {
       setGpa((newGpa / count).toFixed(2));
     } else {

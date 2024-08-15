@@ -9,10 +9,6 @@ import Assignment from "./assignment";
  * a list of assignments, and calculated totals such as total achieved percentage, average achieved 
  * percentage, and the course grade.
  * 
- * The component manages tracks 
- * its assignments, total percent achieved, average percentage achieved, and course grade. 
- * Assignments can be added, deleted, and updated, with corresponding state updates for totals and averages.
- * 
  * State:
  * - `showAssignments` (Boolean): Determines whether the assignments for the course are visible.
  * - `totalAchieved` (Number): The total percentage achieved for the course.
@@ -47,7 +43,7 @@ export default function Course(props) {
 
   /**
    *  Updates the data of a specific assignment and recalculates the total
-   *  and average percentages. Is passed as a parameter to Assignment components.
+   *  and average percentages. The function is passed into Assignment components.
    *
    * @param {*} id of the Assignment being updated
    * @param {*} updatedData Name, Grade% and Weight% inputs in Assignment components
