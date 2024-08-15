@@ -1,7 +1,5 @@
-let eventGuid = 0;
-
-export const EVENTS = [];
+let eventIdCounter = 0;
 
 export function createEventId() {
-  return String(eventGuid++);
+  return String(eventIdCounter++);
 }
