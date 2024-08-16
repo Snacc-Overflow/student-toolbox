@@ -7,26 +7,25 @@ import interactionPlugin from "@fullcalendar/interaction";
 import styles from "./style.module.scss";
 import EventModal from "./eventModal";
 import DeleteModal from "./deleteModal";
-import { useSession } from "next-auth/react";
 
-export default function Calendar() {
+export default function Calendar({ username }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const [events, setEvents] = useState([]);
   const [selectedInfo, setSelectedInfo] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const session = useSession();
-  const username = session?.data?.user?.name;
 
   useEffect(() => {
     async function fetchEvents() {
       const response = await fetch(`/api/user/${username}/event`);
-      const data = await response.json();
-      setEvents(data);
+      if (response.ok) {
+        const data = await response.json();
+        setEvents(data); // Set the fetched events in state
+      }
     }
 
     fetchEvents();
-  }, []);
+  }, [username]);
 
   const handleDateSelect = (selectInfo) => {
     setSelectedInfo(selectInfo);
