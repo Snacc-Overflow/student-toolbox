@@ -13,7 +13,6 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
    */
   const handleEventCreation = async () => {
     if (title && selectedInfo) {
-      // Create a new event object with the entered details
       const newEvent = {
         id: createEventId(),
         title,
@@ -24,19 +23,20 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
         borderColor: color,
       };
 
-      // Add the new event to the list of events in the parent component's state
-      setEvents((prevEvents) => {
-        if (Array.isArray(prevEvents)) {
-          return [...prevEvents, newEvent];
-        } else {
-          console.error("prevEvents is not an array", prevEvents);
-          return [newEvent];
-        }
+      const response = await fetch("/api/user/${username}/event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ event: newEvent }),
       });
 
-      setIsOpen(false);
-      setTitle("");
-      setColor("#3788d8");
+      if (response.ok) {
+        setEvents((prevEvents) => [...prevEvents, newEvent]);
+        setIsOpen(false);
+        setTitle("");
+        setColor("#3788d8");
+      }
     }
   };
 

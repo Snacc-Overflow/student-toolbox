@@ -16,7 +16,13 @@ export default function Calendar() {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    // Placeholder for API call to fetch events
+    async function fetchEvents() {
+      const response = await fetch("/api/user/${username}/event");
+      const data = await response.json();
+      setEvents(data);
+    }
+
+    fetchEvents();
   }, []);
 
   /**
@@ -42,13 +48,23 @@ export default function Calendar() {
   /**
    * Handles event deletion
    */
-  const handleEventDeletion = () => {
+  const handleEventDeletion = async () => {
     if (selectedEvent) {
-      setEvents((prevEvents) =>
-        prevEvents.filter((event) => event.id !== selectedEvent.id)
-      );
-      setDeleteModalIsOpen(false);
-      setSelectedEvent(null);
+      const response = await fetch("/api/user/${username}/event", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId: selectedEvent.id }),
+      });
+
+      if (response.ok) {
+        setEvents((prevEvents) =>
+          prevEvents.filter((event) => event.id !== selectedEvent.id)
+        );
+        setDeleteModalIsOpen(false);
+        setSelectedEvent(null);
+      }
     }
   };
 
