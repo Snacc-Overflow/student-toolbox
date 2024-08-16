@@ -1,28 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./style.module.scss";
+import { useSession } from "next-auth/react";
 
-/**
- * Delete confirmation modal component
- *
- * @param {boolean} isOpen - Controls the visibility of the modal
- * @param {function} setIsOpen - Toggles the modal visibility
- * @param {function} handleDelete - Handles the event deletion
- * @param {string} eventTitle - Title of the event to be deleted
- */
 export default function DeleteModal({
   isOpen,
   setIsOpen,
-  handleDelete,
-  eventTitle,
+  selectedEvent,
+  setEvents,
 }) {
+  const session = useSession();
+  const username = session?.data?.user?.name;
+  /**
+   * Handles event deletion
+   */
+  const handleEventDeletion = async () => {
+    if (selectedEvent) {
+      const response = await fetch(`/api/user/${username}/event`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId: selectedEvent.id }),
+      });
+
+      if (response.ok) {
+        setEvents((prevEvents) =>
+          prevEvents.filter((event) => event.id !== selectedEvent.id)
+        );
+        setIsOpen(false);
+      } else {
+        const error = await response.json();
+        alert(`Failed to delete event: ${error.message}`);
+      }
+    }
+  };
+
   return (
     isOpen && (
       <div className={styles.modalOverlay}>
         <div className={styles.modalContent}>
           <h2>Delete Event</h2>
-          <p>Are you sure you want to delete the event '{eventTitle}'?</p>
-          <button onClick={handleDelete}>Delete</button>
+          <p>
+            Are you sure you want to delete the event '{selectedEvent?.title}'?
+          </p>
+          <button onClick={handleEventDeletion}>Delete</button>
           <button onClick={() => setIsOpen(false)}>Cancel</button>
         </div>
       </div>
@@ -34,11 +56,11 @@ export default function DeleteModal({
 DeleteModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
-  eventTitle: PropTypes.string,
+  selectedEvent: PropTypes.object,
+  setEvents: PropTypes.func.isRequired,
 };
 
 // Define default props if necessary
 DeleteModal.defaultProps = {
-  eventTitle: "the event",
+  selectedEvent: null,
 };

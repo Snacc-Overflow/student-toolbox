@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import styles from "./style.module.scss";
 import EventModal from "./eventModal";
 import DeleteModal from "./deleteModal";
+import { useSession } from "next-auth/react";
 
 export default function Calendar() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -14,59 +15,27 @@ export default function Calendar() {
   const [events, setEvents] = useState([]);
   const [selectedInfo, setSelectedInfo] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const session = useSession();
+  const username = session?.data?.user?.name;
 
   useEffect(() => {
     async function fetchEvents() {
-      const response = await fetch("/api/user/${username}/event");
+      const response = await fetch(`/api/user/${username}/event`);
       const data = await response.json();
-      print(data);
       setEvents(data);
     }
 
     fetchEvents();
   }, []);
 
-  /**
-   * Handles date selection for event creation
-   *
-   * @param {object} selectInfo - Information about the selected date
-   */
   const handleDateSelect = (selectInfo) => {
     setSelectedInfo(selectInfo);
     setModalIsOpen(true);
   };
 
-  /**
-   * Handles event click for deletion
-   *
-   * @param {object} clickInfo - Information about the clicked event
-   */
   const handleEventClick = (clickInfo) => {
     setSelectedEvent(clickInfo.event);
     setDeleteModalIsOpen(true);
-  };
-
-  /**
-   * Handles event deletion
-   */
-  const handleEventDeletion = async () => {
-    if (selectedEvent) {
-      const response = await fetch("/api/user/${username}/event", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ eventId: selectedEvent.id }),
-      });
-
-      if (response.ok) {
-        setEvents((prevEvents) =>
-          prevEvents.filter((event) => event.id !== selectedEvent.id)
-        );
-        setDeleteModalIsOpen(false);
-        setSelectedEvent(null);
-      }
-    }
   };
 
   return (
@@ -99,8 +68,8 @@ export default function Calendar() {
         <DeleteModal
           isOpen={deleteModalIsOpen}
           setIsOpen={setDeleteModalIsOpen}
-          handleDelete={handleEventDeletion}
-          eventTitle={selectedEvent?.title}
+          selectedEvent={selectedEvent}
+          setEvents={setEvents}
         />
       )}
     </div>
