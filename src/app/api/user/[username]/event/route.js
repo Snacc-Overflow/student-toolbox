@@ -1,44 +1,88 @@
 import { createUserModel } from "@/lib/mongodb/mongodb";
+import { NextResponse } from "next/server";
 
-export default async function handler(req, res) {
-  const User = await createUserModel();
+/**
+ * Retrieves all events for the specified user
+ *
+ * @param {NextRequest} req
+ * @param {{params:{username: string}}} context
+ * @returns {NextResponse}
+ */
+export async function GET(req, context) {
+  const username = context.params.username;
+  const UserModel = await createUserModel();
+  const user = await UserModel.findOne({ username });
 
-  // Get the user (Assuming you're managing user sessions)
-  const user = await User.findOne({ username: "exampleUser" });
-
-  switch (req.method) {
-    case "GET": // Fetch all events
-      if (user) {
-        res.status(200).json(user.events);
-      } else {
-        res.status(404).json({ error: "User not found" });
-      }
-      break;
-
-    case "POST": // Create a new event
-      const { event } = req.body;
-      if (user) {
-        user.events.push(event);
-        await user.save();
-        res.status(201).json(event);
-      } else {
-        res.status(404).json({ error: "User not found" });
-      }
-      break;
-
-    case "DELETE": // Delete an event
-      const { eventId } = req.body;
-      if (user) {
-        user.events = user.events.filter((e) => e.id !== eventId);
-        await user.save();
-        res.status(204).end();
-      } else {
-        res.status(404).json({ error: "User not found" });
-      }
-      break;
-
-    default:
-      res.setHeader("Allow", ["GET", "POST", "DELETE"]);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
+
+  return NextResponse.json(user.events);
+}
+
+/**
+ * Creates a new event for the specified user
+ *
+ * @param {NextRequest} req
+ * @param {{params:{username: string}}} context
+ * @returns {NextResponse}
+ */
+export async function POST(req, context) {
+  const username = context.params.username;
+  const UserModel = await createUserModel();
+  const { event } = await req.json();
+
+  const user = await UserModel.findOne({ username });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  try {
+    user.events.push(event);
+    await user.save();
+    return NextResponse.json(event, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+/**
+ * Deletes an event for the specified user
+ *
+ * @param {NextRequest} req
+ * @param {{params:{username: string}}} context
+ * @returns {NextResponse}
+ */
+export async function DELETE(req, context) {
+  const username = context.params.username;
+  const UserModel = await createUserModel();
+  const { eventId } = await req.json();
+
+  const user = await UserModel.findOne({ username });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  try {
+    user.events = user.events.filter((e) => e.id !== eventId);
+    await user.save();
+    return NextResponse.json(null, { status: 204 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+/**
+ * Handles unsupported HTTP methods
+ *
+ * @param {NextRequest} req
+ * @returns {NextResponse}
+ */
+export function handler(req) {
+  return NextResponse.json(
+    { error: `Method ${req.method} Not Allowed` },
+    { status: 405 }
+  );
 }

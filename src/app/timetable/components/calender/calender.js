@@ -19,6 +19,7 @@ export default function Calendar() {
     async function fetchEvents() {
       const response = await fetch("/api/user/${username}/event");
       const data = await response.json();
+      print(data);
       setEvents(data);
     }
 
