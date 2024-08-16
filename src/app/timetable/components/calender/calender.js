@@ -16,7 +16,15 @@ export default function Calendar() {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    // Placeholder for API call to fetch events
+    async function fetchEvents() {
+      const response = await fetch(
+        "@app/api/auth/[...nextauth]/event/route.js"
+      );
+      const data = await response.json();
+      setEvents(data);
+    }
+
+    fetchEvents();
   }, []);
 
   /**
