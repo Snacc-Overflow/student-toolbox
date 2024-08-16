@@ -32,9 +32,12 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
       });
 
       if (response.ok) {
-        setEvents((prevEvents) =>
-          Array.isArray(prevEvents) ? [...prevEvents, newEvent] : [newEvent]
-        );
+        setEvents((prevEvents) => {
+          // Ensure prevEvents is always an array
+          return Array.isArray(prevEvents)
+            ? [...prevEvents, newEvent]
+            : [newEvent];
+        });
         setIsOpen(false);
         setTitle("");
         setColor("#3788d8");

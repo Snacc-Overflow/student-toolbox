@@ -48,20 +48,23 @@ export default function Calendar({ username }) {
       borderColor: eventInfo.event.borderColor,
     };
 
-    const response = await fetch(`/api/user/${username}/event/`, {
-      method: "PATCH",
-      body: JSON.stringify(updatedEvent),
-    });
-
-    if (response.ok) {
-      setEvents((prevEvents) =>
-        prevEvents.map((event) =>
-          event.id === updatedEvent.id ? updatedEvent : event
-        )
+    try {
+      const response = await fetch(
+        `/api/user/${username}/event/${eventInfo.event.id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(updatedEvent),
+        }
       );
-    } else {
-      const error = await response.json();
-      alert(`Failed to update event: ${error.message}`);
+
+      if (response.ok) {
+        console.log("Event updated successfully");
+      } else {
+        const error = await response.json();
+        console.error(`Failed to update event: ${error.message}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
