@@ -16,23 +16,15 @@ export default function DeleteModal({
    */
   const handleEventDeletion = async () => {
     if (selectedEvent) {
-      const response = await fetch(`/api/user/${username}/event`, {
+      await fetch(`/api/user/${username}/event`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ eventId: selectedEvent.id }),
       });
 
-      if (response.ok) {
-        setEvents((prevEvents) =>
-          prevEvents.filter((event) => event.id !== selectedEvent.id)
-        );
-        setIsOpen(false);
-      } else {
-        const error = await response.json();
-        alert(`Failed to delete event: ${error.message}`);
-      }
+      setEvents((prevEvents) =>
+        prevEvents.filter((event) => event.id !== selectedEvent.id)
+      );
+      setIsOpen(false);
     }
   };
 
