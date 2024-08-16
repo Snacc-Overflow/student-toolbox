@@ -48,6 +48,36 @@ export async function POST(req, context) {
 }
 
 /**
+ * Updates an event for the specified user
+ *
+ * @param {NextRequest} req
+ * @param {{params:{username: string, eventId: string}}} context
+ * @returns {NextResponse}
+ */
+export async function PATCH(req, context) {
+  const username = context.params.username;
+  const eventId = context.params.eventId;
+  const UserModel = await createUserModel();
+  const updatedEvent = await req.json();
+
+  const user = await UserModel.findOne({ username });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  try {
+    user.events = user.events.map((event) =>
+      event.id === eventId ? updatedEvent : event
+    );
+    await user.save();
+    return NextResponse.json(updatedEvent, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+/**
  * Deletes an event for the specified user
  *
  * @param {NextRequest} req

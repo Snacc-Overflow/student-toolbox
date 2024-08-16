@@ -37,6 +37,34 @@ export default function Calendar({ username }) {
     setDeleteModalIsOpen(true);
   };
 
+  const handleEventDrop = async (eventInfo) => {
+    const updatedEvent = {
+      id: eventInfo.event.id,
+      title: eventInfo.event.title,
+      start: eventInfo.event.start.toISOString(),
+      end: eventInfo.event.end.toISOString(),
+      allDay: eventInfo.event.allDay,
+      backgroundColor: eventInfo.event.backgroundColor,
+      borderColor: eventInfo.event.borderColor,
+    };
+
+    const response = await fetch(`/api/user/${username}/event/`, {
+      method: "PATCH",
+      body: JSON.stringify(updatedEvent),
+    });
+
+    if (response.ok) {
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event.id === updatedEvent.id ? updatedEvent : event
+        )
+      );
+    } else {
+      const error = await response.json();
+      alert(`Failed to update event: ${error.message}`);
+    }
+  };
+
   return (
     <div className={styles.calendar_main}>
       <FullCalendar
@@ -47,6 +75,7 @@ export default function Calendar({ username }) {
         events={events}
         select={handleDateSelect}
         eventClick={handleEventClick}
+        eventDrop={handleEventDrop}
         slotLabelFormat={{
           hour: "numeric",
           minute: "2-digit",
