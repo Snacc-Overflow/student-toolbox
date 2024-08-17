@@ -1,7 +1,7 @@
 "use client";
 
 import Title from "@/components/title";
-import Calender from "./components/calender/calender";
+import Calender from "../../components/calender/calender";
 import { useSession } from "next-auth/react";
 
 export default function TimetablePage() {

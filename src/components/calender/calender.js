@@ -119,6 +119,7 @@ export default function Calendar({ username }) {
           omitZeroMinute: false,
         }}
         allDaySlot={false}
+        height={700}
       />
 
       {/* Render EventModal if the modalIsOpen state is true */}
