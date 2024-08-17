@@ -49,13 +49,13 @@ export default function Calendar({ username }) {
     };
 
     try {
-      const response = await fetch(
-        `/api/user/${username}/event/${eventInfo.event.id}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(updatedEvent),
-        }
-      );
+      const response = await fetch(`/api/user/${username}/event`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          eventId: eventInfo.event.id,
+          updatedEvent,
+        }),
+      });
 
       if (response.ok) {
         console.log("Event updated successfully");
