@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema(
         title: { type: String, required: true },
         start: { type: Date, required: true },
         end: { type: Date, required: true },
-        allDay: { type: Boolean, default: false },
         backgroundColor: { type: String, default: "#3788d8" },
         borderColor: { type: String, default: "#3788d8" },
       },

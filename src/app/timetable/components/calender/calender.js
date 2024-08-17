@@ -84,6 +84,7 @@ export default function Calendar({ username }) {
           minute: "2-digit",
           omitZeroMinute: false,
         }}
+        allDaySlot={false}
       />
 
       {modalIsOpen && (

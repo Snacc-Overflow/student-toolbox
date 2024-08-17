@@ -21,7 +21,6 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
         title,
         start: selectedInfo.startStr,
         end: selectedInfo.endStr,
-        allDay: selectedInfo.allDay,
         backgroundColor: color,
         borderColor: color,
       };
