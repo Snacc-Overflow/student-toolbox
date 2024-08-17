@@ -79,6 +79,7 @@ export default function Calendar({ username }) {
         select={handleDateSelect}
         eventClick={handleEventClick}
         eventDrop={handleEventDrop}
+        eventResize={handleEventDrop}
         slotLabelFormat={{
           hour: "numeric",
           minute: "2-digit",
