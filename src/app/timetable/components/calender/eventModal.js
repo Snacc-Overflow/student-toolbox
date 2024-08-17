@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./style.module.scss";
-import { createEventId } from "./event-utils";
 import { useSession } from "next-auth/react";
+import { nanoid } from "nanoid";
 
 export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
   const session = useSession();
@@ -17,7 +17,7 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
   const handleEventCreation = async () => {
     if (title && selectedInfo) {
       const newEvent = {
-        id: createEventId(),
+        id: nanoid(),
         title,
         start: selectedInfo.startStr,
         end: selectedInfo.endStr,
