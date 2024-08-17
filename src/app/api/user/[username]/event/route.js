@@ -108,7 +108,7 @@ export async function DELETE(req, context) {
   try {
     user.events = user.events.filter((e) => e.id !== eventId);
     await user.save();
-    return NextResponse.json(null, { status: 204 });
+    return new NextResponse(null, { status: 204 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

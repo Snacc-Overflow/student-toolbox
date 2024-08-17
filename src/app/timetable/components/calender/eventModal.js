@@ -4,6 +4,15 @@ import styles from "./style.module.scss";
 import { useSession } from "next-auth/react";
 import { nanoid } from "nanoid";
 
+/**
+ * EventModal component for creating a new event.
+ *
+ * @param {Object} props - Component props
+ * @param {Function} props.setIsOpen - Function to set the modal open/closed state.
+ * @param {Object|null} props.selectedInfo - Information about the selected time slot or null if no slot is selected.
+ * @param {Function} props.setEvents - Function to update the events list after creating a new event.
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
   const session = useSession();
   // State to manage the event title and color
@@ -12,12 +21,16 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
   const username = session?.data?.user?.name;
 
   /**
-   * Handles the creation of a new event
+   * Handles the creation of a new event.
+   *
+   * @async
+   * @function
+   * @returns {Promise<void>}
    */
   const handleEventCreation = async () => {
     if (title && selectedInfo) {
       const newEvent = {
-        id: nanoid(),
+        id: nanoid(), // Generate a unique ID for the event
         title,
         start: selectedInfo.startStr,
         end: selectedInfo.endStr,
@@ -25,8 +38,12 @@ export default function EventModal({ setIsOpen, selectedInfo, setEvents }) {
         borderColor: color,
       };
 
+      // Send a POST request to create the new event
       const response = await fetch(`/api/user/${username}/event`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ event: newEvent }),
       });
 
