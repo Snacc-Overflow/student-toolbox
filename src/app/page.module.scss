@@ -1,5 +1,84 @@
-.avatar {
-  position: absolute;
-  top: 24px;
-  right: 24px;
+/* page.module.scss */
+
+/* General Styles */
+.main {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  background-color: #E4E8EC;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px; /* Set a max width for the content */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 40px;
+}
+
+.profileIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #C3CFD9;
+  border-radius: 50%;
+  background-image: url('/path-to-profile-icon.png'); /* Update this path to the actual profile image */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Cards Section Styles */
+.cardsSection {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 300px; /* Set a specific width for the card */
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card h2 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.addIcon {
+  font-size: 32px;
+  color: #7F8C8D;
+  cursor: pointer;
+  border: 2px solid #7F8C8D;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  margin: 0 auto;
+}
+
+/* Hover and Active Effects */
+.card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deepen shadow on hover */
+}
+
+.card:active {
+  transform: translateY(0); /* Return to normal on click */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Return to normal shadow on click */
 }
