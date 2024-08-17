@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
 /* Main calendar container with padding and positioning */
 .calendar_main {
   padding-left: 25%;
@@ -85,4 +87,45 @@
 /* Hover state for the cancel button */
 .modalContent button:last-child:hover {
   background-color: #999;
+}
+
+/* Button group container with flex layout */
+.buttonGroup {
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Align buttons to the left; change to center or space-between as needed */
+  gap: 10px; /* Add space between the buttons */
+}
+
+/* Style for the upload button */
+.uploadButton,
+.removeButton {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Style for the remove button */
+.removeButton {
+  width: 40px;
+  height: 40px;
+  padding: 0; /* Remove padding to make the button small */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px; /* Larger font size for the cross */
+  background-color: #f44336; /* Red background */
+}
+
+/* Hover state for the remove button */
+.removeButton:hover,
+.uploadButton:hover {
+  opacity: 0.8; /* Add a hover effect to both buttons */
 }

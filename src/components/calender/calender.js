@@ -23,6 +23,7 @@ export default function Calendar({ username }) {
   const [events, setEvents] = useState([]);
   const [selectedInfo, setSelectedInfo] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(null);
 
   /**
    * Fetches events for the specified user and sets them in state.
@@ -100,8 +101,50 @@ export default function Calendar({ username }) {
     }
   };
 
+  const handleBackgroundImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBackgroundImage(reader.result);
+        document.body.style.backgroundImage = `url(${reader.result})`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveBackgroundImage = () => {
+    setBackgroundImage(null); // Clear the backgroundImage state
+    document.body.style.backgroundImage = ""; // Remove the background image
+  };
+
   return (
     <div className={styles.calendar_main}>
+      {/* Button group for uploading and removing background image */}
+      <div className={styles.buttonGroup}>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleBackgroundImageUpload}
+          style={{ display: "none" }}
+          id="backgroundImageUpload"
+        />
+        <label htmlFor="backgroundImageUpload" className={styles.uploadButton}>
+          Upload Background Image
+        </label>
+
+        {backgroundImage && (
+          <button
+            onClick={handleRemoveBackgroundImage}
+            className={styles.removeButton}
+          >
+            &times;
+          </button>
+        )}
+      </div>
+
       {/* Render the FullCalendar component with the necessary plugins */}
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
