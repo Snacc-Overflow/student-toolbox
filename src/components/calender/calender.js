@@ -56,7 +56,7 @@ export default function Calendar({ username }) {
   };
 
   /**
-   * Handles clicking on an event in the calendar.
+   * Handles clicking on an event in the calendar table.
    *
    * @param {Object} clickInfo - Information about the clicked event.
    * @returns {void}
