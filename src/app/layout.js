@@ -1,3 +1,4 @@
+import LayoutAvatar from "@/components/auth/layout-avatar"
 import { SessionProvider } from "next-auth/react"
 import Header from "../components/header"
 import "./globals.css"
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
+          <LayoutAvatar />
           <Header />
           {children}
         </SessionProvider>
