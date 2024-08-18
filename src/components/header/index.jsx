@@ -16,9 +16,8 @@ export default function Index() {
           setIsActive(!isActive)
         }}>
         <div
-          className={`${styles.burger} ${
-            isActive ? styles.burgerActive : ""
-          }`}></div>
+          className={`${styles.burger} ${isActive ? styles.burgerActive : ""
+            }`}></div>
       </button>
       <AnimatePresence mode="wait">{isActive && <Nav />}</AnimatePresence>
     </>

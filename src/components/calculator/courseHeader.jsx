@@ -5,23 +5,23 @@ export default function CourseHeader({
   onClick,
   onDelete,
   totalAchieved,
-  averageAcheived,
+  averageAchieved,
   courseGrade,
 }) {
   return (
-    <button className="courseInfo" onClick={onClick} type="button">
+    <div className="course-info" onClick={onClick} type="button">
       <div>
-        <div className="courseName">Course Name: {courseName} </div>
-        <div className="letterGrade">{courseGrade}</div>
+        <div className="course-name">Course Name: {courseName}</div>
+        <div className="letter-grade">{courseGrade}</div>
       </div>
-      <div className="gradeSummary">
-        <div className="totalGrade">Total %: {totalAchieved}%</div>
-        <div className="averageGrade">Average %: {averageAcheived}%</div>
-        <button className="deleteCourseBtn " onClick={() => onDelete()}>
+      <div className="grade-summary">
+        <div className="total-grade">Total %: {totalAchieved}%</div>
+        <div className="average-grade">Average %: {averageAchieved}%</div>
+        <button className="delete-course-btn" onClick={() => onDelete()}>
           x
         </button>
       </div>
-    </button>
+    </div>
   );
 }
 
@@ -29,8 +29,7 @@ CourseHeader.propTypes = {
   courseName: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  totalAchieved: PropTypes.isRequired,
-  averageAcheived: PropTypes.isRequired,
-  courseGrade: PropTypes.isRequired
-
+  totalAchieved: PropTypes.number.isRequired,
+  averageAchieved: PropTypes.number.isRequired,
+  courseGrade: PropTypes.string.isRequired,
 };

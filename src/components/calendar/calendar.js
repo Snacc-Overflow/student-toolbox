@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import styles from "./style.module.scss";
+import styles from "./css/style.module.scss";
 import EventModal from "./eventModal";
 import DeleteModal from "./deleteModal";
 

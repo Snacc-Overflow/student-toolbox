@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./style.module.scss";
+import styles from "./css/style.module.scss";
 import { useSession } from "next-auth/react";
 
 /**

@@ -16,19 +16,19 @@ export default function CourseAssignments() {
         setAssignments(assignments.filter((assignment) => assignment.id !== id));
     };
 
-  return (
-    <div className="courseAssignments">
-        {assignments.map((assignment) => (
-            <Assignment
-                key={assignment.id}
-                id={assignment.id}
-                name={assignment.name}
-                grade={assignment.grade}
-                weight={assignment.weight}
-                onDelete={handleAssignmentDelete}
-            />
-        ))}
-        <button className="newAssignmentBtn" onClick={handleNewAssignment}>New Assignment +</button>
-    </div>
-  )
+    return (
+        <div className="course-assignments">
+            {assignments.map((assignment) => (
+                <Assignment
+                    key={assignment.id}
+                    id={assignment.id}
+                    name={assignment.name}
+                    grade={assignment.grade}
+                    weight={assignment.weight}
+                    onDelete={handleAssignmentDelete}
+                />
+            ))}
+            <button className="new-assignment-btn" onClick={handleNewAssignment}>New Assignment +</button>
+        </div>
+    )
 }
