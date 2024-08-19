@@ -1,47 +1,33 @@
-import { auth } from "@/auth";
-import Title from "@/components/title";
-import Link from "next/link";
-import styles from './page.module.scss';
+import { auth } from "@/auth"
+import DatabaseExample from "@/components/dashboard/database-example"
+import Title from "@/components/title"
+import styles from './page.module.scss'
+import DashboardItem from "@/components/dashboard/dashboardItem";
 
 export default async function Home() {
-  const session = await auth();
+  const session = await auth()
+  const dashboardItems = [
+    { title: 'To-Do List', icon: '/icons/todolist.png', link: '/todo' },
+    { title: 'Timetable', icon: '/icons/timetable.png', link: '/timetable' },
+    { title: 'GPA Calculator', icon: '/icons/calculator.png', link: '/calculator' },
+  ];
 
   return (
-    <main className={styles.main}>
-      {/* Main Content Area */}
-      <div className={styles.content}>
-        <header className={styles.header}>
-          <Title text={`👋 Welcome, ${session ? session.user.name : "student"}!`} />
-          <div className={styles.profileIcon}></div>
-        </header>
-
-        {/* Cards Section */}
-        <section className={styles.cardsSection}>
-          {/* GPA Calculator Box */}
-          <Link href="/calculator">
-            <div className={styles.card}>
-              <h2>GPA Calculator</h2>
-              <div className={styles.addIcon}>+</div>
-            </div>
-          </Link>
-
-          {/* Time Table Planner Box */}
-          <Link href="/timetable">
-            <div className={styles.card}>
-              <h2>Time Table Planner</h2>
-              <div className={styles.addIcon}>+</div>
-            </div>
-          </Link>
-
-          {/* To-Do List Box */}
-          <Link href="/todo">
-            <div className={styles.card}>
-              <h2>To-Do List</h2>
-              <div className={styles.addIcon}>+</div>
-            </div>
-          </Link>
-        </section>
+    <main>
+      <Title
+        text={`👋 Welcome, ${session ? session?.user?.name : "student"}!`}
+      />
+      <div className={styles.dashboard}>
+        {dashboardItems.map((item, index) => (
+          <DashboardItem
+            key={index}
+            title={item.title}
+            icon={item.icon}
+            link={item.link}
+          />
+        ))}
       </div>
+      <DatabaseExample />
     </main>
-  );
+  )
 }
