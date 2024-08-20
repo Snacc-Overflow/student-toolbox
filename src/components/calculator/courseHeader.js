@@ -9,7 +9,7 @@ export default function CourseHeader({
   courseGrade,
 }) {
   return (
-    <div className="course-info" onClick={onClick} type="button">
+    <div className="course-info" onClick={onClick} type="button" tabIndex={0}>
       <div>
         <div className="course-name">Course Name: {courseName}</div>
         <div className="letter-grade">{courseGrade}</div>
