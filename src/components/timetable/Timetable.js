@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import styles from "./css/style.module.scss";
-import EventModal from "./eventModal";
-import DeleteModal from "./deleteModal";
+import "./styles/timetable.css";
+import TimetableEventModal from "./TimetableEventModal";
+import TimetableDeleteModal from "./TimetableDeleteModal";
 
 /**
  * Calendar component for displaying and managing events.
@@ -16,7 +16,7 @@ import DeleteModal from "./deleteModal";
  * @param {string} props.username - The username of the user whose events are displayed.
  * @returns {JSX.Element} The rendered component.
  */
-export default function Calendar({ username }) {
+export default function Timetable({ username }) {
   // State variables for managing modals and events
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
@@ -121,24 +121,21 @@ export default function Calendar({ username }) {
   };
 
   return (
-    <div className={styles.calendar_main}>
+    <div className={"calendar-main"}>
       {/* Button group for uploading and removing background image */}
-      <div className={styles.buttonGroup}>
+      <div className={"button-group"}>
         <input
           type="file"
           accept="image/*"
           onChange={handleBackgroundImageUpload}
           style={{ display: "none" }}
-          id="backgroundImageUpload"
+          id="background-image-upload"
         />
-        <label htmlFor="backgroundImageUpload" className={styles.uploadButton}>
-          Upload Background Image
-        </label>
 
         {backgroundImage && (
           <button
             onClick={handleRemoveBackgroundImage}
-            className={styles.removeButton}
+            className={"remove-button"}
           >
             &times;
           </button>
@@ -167,7 +164,7 @@ export default function Calendar({ username }) {
 
       {/* Render EventModal if the modalIsOpen state is true */}
       {modalIsOpen && (
-        <EventModal
+        <TimetableEventModal
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
           selectedInfo={selectedInfo}
@@ -177,7 +174,7 @@ export default function Calendar({ username }) {
 
       {/* Render DeleteModal if the deleteModalIsOpen state is true */}
       {deleteModalIsOpen && (
-        <DeleteModal
+        <TimetableDeleteModal
           isOpen={deleteModalIsOpen}
           setIsOpen={setDeleteModalIsOpen}
           selectedEvent={selectedEvent}
@@ -189,6 +186,6 @@ export default function Calendar({ username }) {
 }
 
 // Define propTypes for the component
-Calendar.propTypes = {
+Timetable.propTypes = {
   username: PropTypes.string.isRequired,
 };

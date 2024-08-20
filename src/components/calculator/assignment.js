@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./css/assignment.css";
+import "./styles/assignment.css";
 import PropTypes from "prop-types";
 
 export default function Assignment(props) {

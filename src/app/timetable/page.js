@@ -1,7 +1,7 @@
 "use client";
 
 import Title from "@/components/title";
-import Calendar from "../../components/calendar/calendar";
+import Timetable from "../../components/timetable/Timetable";
 import { useSession } from "next-auth/react";
 
 export default function TimetablePage() {
@@ -10,7 +10,7 @@ export default function TimetablePage() {
   return (
     <main>
       <Title text="Timetable" />
-      <Calendar username={username} />
+      <Timetable username={username} />
     </main>
   );
 }

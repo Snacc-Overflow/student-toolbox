@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./css/courseAssignments.css";
+import "./styles/courseAssignments.css";
 import Assignment from "./Assignment";
 
 export default function CourseAssignments() {

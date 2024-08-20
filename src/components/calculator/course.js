@@ -1,4 +1,4 @@
-import "./css/course.css";
+import "./styles/course.css";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import CourseHeader from "./courseHeader";

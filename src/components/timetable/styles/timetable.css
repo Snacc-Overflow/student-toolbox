@@ -1,5 +1,5 @@
 /* Overlay for modal, covering the entire screen with a semi-transparent background */
-.modalOverlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
 }
 
 /* Content box for the modal, centered on the screen */
-.modalContent {
+.modal-content {
   background-color: var(--secondary-color);
   padding: 2em;
   border-radius: 8px;
@@ -26,13 +26,13 @@
 }
 
 /* Header style within the modal content */
-.modalContent h2 {
+.modal-content h2 {
   margin-bottom: 1em;
   font-size: 1.5em;
 }
 
 /* Style for the text input within the modal */
-.modalContent input[type="text"] {
+.modal-content input[type="text"] {
   width: 100%;
   padding: 0.5em;
   margin-bottom: 1em;
@@ -42,7 +42,7 @@
 }
 
 /* Style for the color picker input within the modal */
-.modalContent input[type="color"] {
+.modal-content input[type="color"] {
   width: 518px;
   height: 100px;
   padding: 0.5em;
@@ -53,7 +53,7 @@
 }
 
 /* General button styles within the modal */
-.modalContent button {
+.modal-content button {
   padding: 0.75em 1.5em;
   margin: 0.5em;
   border: none;
@@ -66,23 +66,23 @@
 }
 
 /* Hover state for the primary button */
-.modalContent button:hover {
+.modal-content button:hover {
   background-color: #2b6ba8;
 }
 
 /* Style for the cancel button within the modal */
-.modalContent button:last-child {
+.modal-content button:last-child {
   background-color: #ccc;
   color: #333;
 }
 
 /* Hover state for the cancel button */
-.modalContent button:last-child:hover {
+.modal-content button:last-child:hover {
   background-color: #999;
 }
 
 /* Button group container with flex layout */
-.buttonGroup {
+.button-group {
   display: flex;
   /* Enable flexbox */
   align-items: center;
@@ -91,36 +91,4 @@
   /* Align buttons to the left; change to center or space-between as needed */
   gap: 10px;
   /* Add space between the buttons */
-}
-
-/* Style for the upload button */
-.uploadButton,
-.removeButton {
-  background-color: var(--primary-color);
-  /* Green */
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-}
-
-/* Style for the remove button */
-.removeButton {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  /* Remove padding to make the button small */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  /* Larger font size for the cross */
-  background-color: #f44336;
-  /* Red background */
-}
-
-/* Hover state for the remove button */
-.removeButton:hover,
-.uploadButton:hover {
-  opacity: 0.8;
-  /* Add a hover effect to both buttons */
 }
