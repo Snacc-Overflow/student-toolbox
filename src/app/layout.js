@@ -1,6 +1,6 @@
 import LayoutAvatar from "@/components/auth/layout-avatar";
 import Header from "../components/header";
-import { NextAuthProvider } from "./context/next-auth-provider";
+import { NextAuthProvider } from "../context/next-auth-provider";
 import "./globals.css";
 
 export const metadata = {
