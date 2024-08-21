@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import PropTypes from "prop-types";
 import React from "react";
-import "./styles/TodoCreateModal.css";
+import "./styles/todoList.css";
 import TodoListItem from "./TodoListItem";
 
 export default function TodoList({ todoItems, setItems }) {
