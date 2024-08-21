@@ -37,7 +37,6 @@ const handler = NextAuth({
   theme: {
     colorScheme: "light",
   },
-  url: "http://localhost:3000",
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
