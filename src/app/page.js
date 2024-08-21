@@ -1,6 +1,6 @@
 import { auth } from "@/auth"
 import Title from "@/components/title"
-import styles from './page.module.scss'
+import './dashboard/dashboard.css'
 import DashboardItem from "@/components/dashboard/dashboardItem";
 
 export default async function Home() {
@@ -16,7 +16,7 @@ export default async function Home() {
       <Title
         text={`👋 Welcome, ${session ? session?.user?.name : "student"}!`}
       />
-      <div className={styles.dashboard}>
+      <div className="dashboard">
         {dashboardItems.map((item, index) => (
           <DashboardItem
             key={index}
