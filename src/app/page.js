@@ -26,7 +26,6 @@ export default async function Home() {
           />
         ))}
       </div>
-      <DatabaseExample />
     </main>
   )
 }
