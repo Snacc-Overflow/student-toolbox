@@ -1,5 +1,4 @@
 import { auth } from "@/auth"
-import DatabaseExample from "@/components/dashboard/database-example"
 import Title from "@/components/title"
 import styles from './page.module.scss'
 import DashboardItem from "@/components/dashboard/dashboardItem";
