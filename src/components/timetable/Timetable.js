@@ -101,25 +101,6 @@ export default function Timetable({ username }) {
     }
   };
 
-  const handleBackgroundImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setBackgroundImage(reader.result);
-        document.body.style.backgroundImage = `url(${reader.result})`;
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundRepeat = "no-repeat";
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleRemoveBackgroundImage = () => {
-    setBackgroundImage(null); // Clear the backgroundImage state
-    document.body.style.backgroundImage = ""; // Remove the background image
-  };
-
   return (
     <div className={"calendar-main"}>
       {/* Button group for uploading and removing background image */}
