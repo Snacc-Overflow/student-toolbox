@@ -1,11 +1,11 @@
-import LayoutAvatar from "@/components/auth/layout-avatar"
-import { SessionProvider } from "next-auth/react"
-import Header from "../components/header"
-import "./globals.css"
+import LayoutAvatar from "@/components/auth/layout-avatar";
+import { SessionProvider } from "next-auth/react";
+import Header from "../components/header";
+import "./globals.css";
 
 export const metadata = {
   title: "Student Toolbox",
-}
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -24,5 +24,5 @@ export default function RootLayout({ children }) {
         </SessionProvider>
       </body>
     </html>
-  )
+  );
 }
