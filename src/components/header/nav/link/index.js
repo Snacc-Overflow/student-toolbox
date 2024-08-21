@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./headerLink.css";
+import PropTypes from "prop-types";
 
 export default function Link({ data }) {
   return (
+    // Make nav links responsive
     <motion.a
       href={data.href}
       className="nav-link"
@@ -28,3 +30,10 @@ export default function Link({ data }) {
     </motion.a>
   );
 }
+
+Link.propTypes = {
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
+  }).isRequired,
+};
