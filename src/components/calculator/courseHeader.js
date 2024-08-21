@@ -9,7 +9,7 @@ export default function CourseHeader({
   courseGrade,
 }) {
   return (
-    <div className="course-info" onClick={onClick} type="button" tabIndex={0}>
+    <button className="course-info" onClick={onClick}>
       <div>
         <div className="course-name">Course Name: {courseName}</div>
         <div className="letter-grade">{courseGrade}</div>
@@ -21,7 +21,7 @@ export default function CourseHeader({
           x
         </button>
       </div>
-    </div>
+    </button>
   );
 }
 
