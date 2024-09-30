@@ -8,6 +8,11 @@
     border-radius: 5px;
 
     font-weight: 500;
+
+    overflow: hidden; /* Ensure the content does not overflow */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis (...) when text overflows */
+    flex-grow: 1;
 }
 
 .todo-list-item-complete {
@@ -15,9 +20,10 @@
 }
 
 /* Media query for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .todo-list-item {
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        width: 90%;
+        padding: 1rem;
     }
 }
