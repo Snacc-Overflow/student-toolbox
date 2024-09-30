@@ -13,3 +13,11 @@
 .todo-list-item-complete {
     text-decoration: line-through;
 }
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .todo-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
