@@ -92,3 +92,21 @@
   gap: 10px;
   /* Add space between the buttons */
 }
+
+/* Adjust the width of the timetable for smaller screens */
+@media (max-width: 1920px) {
+  body {
+    margin: 0 max(calc(20% - 10vw), 10px) 0 max(calc(20% - 10vw), 10px);
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    margin: 5% 35px 5% 35px;
+    font-size: 1.5rem;
+  }
+
+  .fc-toolbar-chunk {
+    font-size: 12px;
+  }
+}
