@@ -33,6 +33,12 @@ export default function Timetable({ username }) {
     minute: "2-digit",
     omitZeroMinute: false,
   });
+  const [eventTimeFormat, setEventTimeFormat] = useState({
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+  const [displayEventTime, setDisplayEventTime] = useState(true);
 
 
   /**
@@ -66,6 +72,8 @@ export default function Timetable({ username }) {
         omitZeroMinute: true, 
         hour12: true 
       });
+      setEventTimeFormat({});
+      setDisplayEventTime(false);
     } else {
       setDayHeaderFormat({ weekday: 'short', day: 'numeric' }); 
       setTitleFormat({ year: "numeric", month: "long" });
@@ -75,6 +83,12 @@ export default function Timetable({ username }) {
         omitZeroMinute: false, 
         hour12: true 
       });
+      setEventTimeFormat({
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+      setDisplayEventTime(true);
     }
   };
 
@@ -158,6 +172,8 @@ export default function Timetable({ username }) {
         dayHeaderFormat={dayHeaderFormat} 
         slotLabelFormat={slotLabelFormat}
         titleFormat={titleFormat}
+        eventTimeFormat={eventTimeFormat}
+        displayEventTime={displayEventTime}
         allDaySlot={false}
         height={700}
       />
