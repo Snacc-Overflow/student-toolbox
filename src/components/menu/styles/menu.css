@@ -1,18 +1,58 @@
+:root {
+    /* Color Variables */
+    --primary-color: #3788d8;
+    --primary-color-hover: #2b6ba8;
+    --cancel-color: #ccc;
+    --cancel-color-hover: #999;
+    --text-color-dark: #333;
+    --input-border-color: #ccc;
+    --menu-bg-color: #adc1c6;
+    --menu-text-color: white;
+    --nav-link-color: rgb(39, 39, 39);
+    --button-bg-color: #92bfc5;
+    --burger-color: black;
+
+    /* Spacing and Dimensions */
+    --padding-large: 2em;
+    --padding-medium: 1em;
+    --padding-small: 0.75em;
+    --margin-small: 1rem;
+    --icon-margin-left: 0.5rem;
+    --icon-size: 1rem;
+    --nav-gap: 12px;
+    --button-size: 80px;
+    --menu-height: 100vh;
+    --burger-width: 40%;
+    --burger-height: 3px;
+    --burger-gap: 5px;
+
+    /* Font Sizes */
+    --font-size-large: 1.5rem;
+    --font-size-nav: 56px;
+
+    /* Z-index */
+    --z-index-menu: 9;
+    --z-index-button: 10;
+
+    /* Transition */
+    --transition-fast: 0.3s;
+}
+
 /* Styles for menu links */
 .nav-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: inherit;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin-bottom: var(--margin-small);
+    font-size: var(--font-size-large);
 }
 
 .arrow-icon {
-    margin-left: 0.5rem;
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.3s ease;
+    margin-left: var(--icon-margin-left);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    transition: transform var(--transition-fast) ease;
 }
 
 .nav-link:hover .arrow-icon {
@@ -23,15 +63,15 @@
 .menu {
     position: fixed;
     left: 0;
-    height: 100vh;
-    background-color: #adc1c6;
-    color: white;
-    z-index: 9;
-    top: 0px;
+    height: var(--menu-height);
+    background-color: var(--menu-bg-color);
+    color: var(--menu-text-color);
+    z-index: var(--z-index-menu);
+    top: 0;
 }
 
 .menu .body {
-    padding: 50px;
+    padding: var(--padding-large);
     display: flex;
     justify-content: space-between;
 }
@@ -39,14 +79,14 @@
 .menu .body .nav {
     display: flex;
     flex-direction: column;
-    font-size: 56px;
-    gap: 12px;
+    font-size: var(--font-size-nav);
+    gap: var(--nav-gap);
     margin-top: 80px;
 }
 
 .menu .body .nav a {
     text-decoration: none;
-    color: rgb(39, 39, 39);
+    color: var(--nav-link-color);
     font-weight: 300;
 }
 
@@ -55,16 +95,16 @@
     position: fixed;
     left: 0;
     margin: 20px;
-    width: 80px;
-    height: 80px;
-    background-color: #92bfc5;
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: var(--button-bg-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     cursor: pointer;
-    z-index: 10;
+    z-index: var(--z-index-button);
     top: 0;
 }
 
@@ -76,20 +116,20 @@
 .button .burger::before {
     content: "";
     display: block;
-    width: 40%;
-    background-color: black;
-    height: 3px;
+    width: var(--burger-width);
+    background-color: var(--burger-color);
+    height: var(--burger-height);
     margin: auto;
     position: relative;
-    transition: 0.3s;
+    transition: var(--transition-fast);
 }
 
 .button .burger::after {
-    top: -5px;
+    top: calc(-1 * var(--burger-gap));
 }
 
 .button .burger::before {
-    top: 5px;
+    top: var(--burger-gap);
 }
 
 .button .burgerActive::after {
