@@ -100,7 +100,7 @@ textarea {
 /* Media query for screens 515px or less */
 @media (max-width: 515px) {
     .title-bar h1 {
-    font-size: 1.2rem; /* Adjust font size for smaller screens */
+    font-size: 1.2rem; 
     }   
 }
 
