@@ -153,14 +153,10 @@ export default function CalculatorPage() {
     <main>
       <div id="calculator-bar">
         <Title text="GPA Calculator" />
-        <CalculatorHeader
-          onNewCourseInput={handleNewCourseInput}
-          onNewCourse={handleNewCourse}
-          courseName={courseName}
-        ></CalculatorHeader>
+
       </div>
 
-      <div className="overall-grade">Current GPA:{gpa}/9</div>
+      <div className="overall-grade">Current GPA: {gpa}/9</div>
 
       <CourseList
         courses={courses}
@@ -168,6 +164,12 @@ export default function CalculatorPage() {
         onCourseDelete={handleCourseDelete}
         onAverageUpdate={handleAverageUpdate}
       ></CourseList>
+
+      <CalculatorHeader //rename
+                onNewCourseInput={handleNewCourseInput}
+                onNewCourse={handleNewCourse}
+                courseName={courseName}
+      ></CalculatorHeader>
     </main>
   );
 }

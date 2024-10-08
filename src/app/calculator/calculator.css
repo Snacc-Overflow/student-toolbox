@@ -6,6 +6,8 @@
 
 .create-course {
   display: flex;
+  flex-wrap: wrap;
+  margin: 3%;
   align-items: center;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
 }
@@ -16,14 +18,13 @@
   border: none;
   border-radius: 3px 0px 0px 3px;
   font-size: 17px;
-  padding-left: 10px;
   outline: none;
 }
 
 .create-course button {
   background-color: white;
   border: none;
-  width: 30px;
+  width: auto;
   height: 45px;
   display: flex;
   align-items: center;

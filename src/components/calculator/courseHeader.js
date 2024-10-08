@@ -11,16 +11,16 @@ export default function CourseHeader({
   return (
     <button className="course-info" onClick={onClick}>
       <div>
-        <div className="course-name">Course Name: {courseName}</div>
+        <div className="course-name">{courseName}</div>
         <div className="letter-grade">{courseGrade}</div>
       </div>
+
       <div className="grade-summary">
-        <div className="total-grade">Total %: {totalAchieved}%</div>
-        <div className="average-grade">Average %: {averageAcheived}%</div>
         <button className="delete-course-btn" onClick={() => onDelete()}>
           x
         </button>
       </div>
+
     </button>
   );
 }

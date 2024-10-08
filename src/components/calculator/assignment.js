@@ -118,8 +118,8 @@ export default function Assignment(props) {
                         {handleChangingElement("weight")}
                     </button>
                 </div>
-                <button className="delete-assignment-btn" onClick={() => props.onDelete(props.id)}>x</button>
             </div>
+            <button className="delete-assignment-btn" onClick={() => props.onDelete(props.id)}>x</button>
         </div>
     )
 }

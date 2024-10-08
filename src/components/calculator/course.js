@@ -225,6 +225,12 @@ export default function Course(props) {
             onUpdate={handleAssignmentUpdate}
           />
         ))}
+
+        <div className="grade-summary">
+            <div className="total-grade">Total %: {totalAchieved}%</div>
+            <div className="average-grade">Average %: {averageAcheived}%</div>
+        </div>
+
         <button onClick={handleNewAssignment}>New Assignment +</button>
       </div>
     </div>
