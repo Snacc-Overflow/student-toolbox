@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 export default function LayoutAvatar() {
   const { data: session } = useSession();
   const [avatarSize, setAvatarSize] = useState(48);
-  const [customImage, setCustomImage] = useState(null); // State for custom image
+  const [customImage, setCustomImage] = useState(null); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,7 +22,7 @@ export default function LayoutAvatar() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Call once to set initial state
+    handleResize(); 
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -32,7 +32,6 @@ export default function LayoutAvatar() {
   if (!session?.user?.name) return null;
 
   const handleImageChange = (file) => {
-    // Optionally, here you could store the image (e.g., send it to a server)
     const imageUrl = URL.createObjectURL(file);
     setCustomImage(imageUrl);
   };
@@ -42,8 +41,8 @@ export default function LayoutAvatar() {
       <Avatar
         size={avatarSize}
         username={session.user.name}
-        imageUrl={customImage || session.user.image} // Use custom image if available
-        onImageChange={handleImageChange} // Pass handler to Avatar component
+        imageUrl={customImage || session.user.image} 
+        onImageChange={handleImageChange} 
       />
     </div>
   );
