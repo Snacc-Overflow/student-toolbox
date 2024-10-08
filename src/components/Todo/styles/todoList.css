@@ -25,7 +25,7 @@
     text-decoration: line-through;
 }
 
-/* Media query for everything below 800px, breaking point 1 */
+/* Media query for everything below 800px, the medium break point */
 @media (max-width: 800px) {
     .todo-list-item {
         align-items: center;
