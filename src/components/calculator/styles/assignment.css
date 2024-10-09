@@ -1,8 +1,6 @@
 .assignment {
-    display: flex;
-    flex-wrap: wrap;
+    display: column;
     align-items: center;
-    justify-content: center;
     background-color: white;
     margin: 1%;
     padding: 1%;
@@ -12,7 +10,7 @@
     border-color: rgb(103, 103, 103, 0.33);
     border-width: 1px;
     font-size: 3vw;
-    width: fit-content;
+    width: 97.5;
     height: fit-content;
 }
 
@@ -22,7 +20,7 @@
     height: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding: 2%;
 }
 
 .assignment-name {
@@ -91,7 +89,7 @@
 
 .assignment-results>div>button>* {
     width: auto;
-    font-size: 2.5vw;
+    font-size: 2vw;
     background-color: transparent;
     outline: none;
     border: none;
@@ -103,7 +101,7 @@
     color: inherit;
     cursor: pointer;
     width: 12%;
-    font-size: 2.5vw;
+    font-size: 2vw;
     text-align: center;
     align-items: center;
 }
