@@ -9,7 +9,7 @@
     border-style: solid;
     border-color: rgb(103, 103, 103, 0.33);
     border-width: 1px;
-    font-size: 3vw;
+    font-size: 2vw;
     width: 97.5;
     height: fit-content;
 }
@@ -49,7 +49,7 @@
 
 .assignment-name>button>* {
     width: auto;
-    font-size: 3vw;
+    font-size: 2vw;
     background-color: transparent;
     outline: none;
     border: none;
