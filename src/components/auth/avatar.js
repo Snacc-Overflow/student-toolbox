@@ -29,6 +29,12 @@ export default function Avatar({ size, username, imageUrl, onImageChange }) {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleAvatarClick();
+    }
+  };
+
   return (
     <div>
       <input
@@ -45,9 +51,18 @@ export default function Avatar({ size, username, imageUrl, onImageChange }) {
           className="avatar"
           style={{ width: size, height: size, cursor: "pointer" }}
           onClick={handleAvatarClick}
+          role="button"
+          tabIndex="0"
+          onKeyPress={handleKeyPress}
         />
       ) : (
-        <div onClick={handleAvatarClick} style={{ cursor: "pointer" }}>
+        <div
+          onClick={handleAvatarClick}
+          onKeyPress={handleKeyPress}
+          style={{ cursor: "pointer" }}
+          role="button"
+          tabIndex="0"
+        >
           <Blockies
             seed={username}
             size={10} 
