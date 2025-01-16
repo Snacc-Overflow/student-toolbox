@@ -16,7 +16,7 @@
     "@fullcalendar/timegrid": "^6.1.15",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^11.3.24",
-    "mongoose": "^8.5.2",
+    "mongoose": "^8.9.5",
     "next": "14.2.10",
     "next-auth": "^4.24.7",
     "prop-types": "^15.8.1",
